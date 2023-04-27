@@ -1,28 +1,33 @@
+{% set route_name = app.request.attributes.get('_route') %}
+
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('home_index') }}"><img src="https://fakeimg.pl/50x50/2c3e50,128/FFF,255?text=DWWM"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <a class="navbar-brand" href="{{ path('home_index') }}">
+                <img src="https://www.cefim.eu/wp-content/uploads/2020/11/decouvrez-notre-formation-chargee-de-communication-esport-logo-blanc-no-baseline-300x96.png.webp" alt="logo cefim" width="150" height="48">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
+                    aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarColor03">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ path('home_index') }}">Accueil
-                            <span class="visually-hidden">(current)</span>
+                        <a class="nav-link {% if route_name == 'home_index' %}active{% endif %}"
+                           href="{{ path('home_index') }}">Accueil
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('home_contact') }}">Contact</a>
+                        <a class="nav-link {% if route_name == 'home_contact' %}active{% endif %}"
+                           href="{{ path('home_contact') }}">Contact</a>
                     </li>
                 </ul>
 
-                <form class="d-flex">
-                    <input class="form-control me-sm-2" type="search" placeholder="Search">
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-dark my-2 my-sm-0">Se connecter</a>
+                </div>
             </div>
         </div>
     </nav>
