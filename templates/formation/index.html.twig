@@ -7,31 +7,11 @@
 
     <hr>
 
-    <table class="table table-striped table-hover">
-        <caption>Liste des formations</caption>
-
-        <thead class="table-dark">
-            <tr>
-                <th>Nom</th>
-                <th>Ville</th>
-                <th>Début</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-
-        <tbody>
+    <section class="row mt-5">
         {% for formation in formations %}
-            <tr>
-                <td>{{ formation.nom }}</td>
-                <td>{{ formation.ville }}</td>
-                <td>{{ formation.startedAt|date('d/m/Y') }}</td>
-                <td>
-                    <a href="{{ path('formation_show', {'id': formation.id}) }}" class="btn btn-info">
-                        <i class="fa-solid fa-circle-info"></i>
-                    </a>
-                </td>
-            </tr>
+            <div class="col-4">
+                {% include 'partials/_formationCard.html.twig' with {formation} %}
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
+    </section>
 {% endblock %}

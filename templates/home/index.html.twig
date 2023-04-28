@@ -7,6 +7,24 @@
 
     <hr>
 
-    <section>
+    <section class="row mt-5 mb-3 text-center">
+        <h2 class="mb-3">Se former !</h2>
+
+        <p>
+            Des formations professionalisantes ou diplômantes,<br>en continue ou en alternance toute l'année.<br>
+            Reconversion, ré-orientation d'études, évolution de carrière
+        </p>
+    </section>
+
+    <hr>
+
+    <section class="row mt-5">
+        <h2 class="mb-3">Nos prochaines formations</h2>
+
+        {% for formation in formations %}
+            <div class="col-4">
+                {% include 'partials/_formationCard.html.twig' with {formation} %}
+            </div>
+        {% endfor %}
     </section>
 {% endblock %}
