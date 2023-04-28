@@ -20,6 +20,12 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link {% if route_name == 'formation_index' %}active{% endif %}"
+                           href="{{ path('formation_index') }}">Formations
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link {% if route_name == 'home_contact' %}active{% endif %}"
                            href="{{ path('home_contact') }}">Contact</a>
                     </li>
