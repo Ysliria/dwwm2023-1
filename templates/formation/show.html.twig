@@ -13,8 +13,34 @@
         </a>
     </div>
 
-    <section class="row">
+    <section class="row mt-3">
+        <h2>La formation</h2>
 
+        <dl class="col-8 row">
+            <dt>Commence le : </dt>
+            <dl>{{ formation.startedAt|date('d/m/Y') }}</dl>
+
+            <dt>Fini le : </dt>
+            <dl>{{ formation.finishedAt|date('d/m/Y') }}</dl>
+
+            <dt>Se déroule à : </dt>
+            <dl>{{ formation.ville|upper }}</dl>
+        </dl>
+
+        <img src="https://picsum.photos/id/{{ formation.id }}/300/200" class="img-thumbnail col-4" alt="illustration">
+    </section>
+
+    <section class="row mt-3">
+        <h2>Le contenu</h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut commodi expedita illum libero nemo porro
+            quasi soluta. A atque cum doloremque exercitationem id libero maxime officiis praesentium qui rerum!</p>
+        <p>Alias deleniti distinctio eum facere facilis in ipsam laboriosam molestias nemo numquam obcaecati, odit
+            pariatur perspiciatis possimus reiciendis rem similique. Adipisci aliquid consequuntur corporis eveniet
+            fugiat nihil omnis praesentium repellat!</p>
+        <p>Cupiditate distinctio est, eum harum illum, minus, natus quas recusandae repudiandae saepe tempore vitae! Ab
+            accusantium adipisci aliquid aperiam, autem dignissimos eius harum hic illo modi, non tempore voluptas
+            voluptate.</p>
     </section>
 {% endblock %}
 
