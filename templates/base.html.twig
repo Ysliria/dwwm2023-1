@@ -22,6 +22,14 @@
     <body>
         {% include 'partials/_header.html.twig' %}
 
+        {% for rubrique, messages in app.flashes %}
+            <div class="alert alert-{{ rubrique }}">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endfor %}
+
         <main class="container mt-3">
             {% block body %}{% endblock %}
         </main>

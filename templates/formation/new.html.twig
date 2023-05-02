@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Foramulaire d'ajout{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une formation</h1>
+
+    <hr>
+
+    {{ form_start(formation_add) }}
+        {{ form_row(formation_add) }}
+
+        <button class="btn btn-primary float-end">Ajouter</button>
+    {{ form_end(formation_add) }}
+{% endblock %}
+

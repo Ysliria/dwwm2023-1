@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mise à jour{% endblock %}
+
+{% block body %}
+    <h1>Mettre à jour</h1>
+
+    <hr>
+
+    {{ form_start(formation_add) }}
+        {{ form_row(formation_add) }}
+
+        <button class="btn btn-primary float-end">Modifier</button>
+    {{ form_end(formation_add) }}
+{% endblock %}
+
