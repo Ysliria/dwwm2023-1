@@ -29,12 +29,14 @@ class FormationType extends AbstractType
             ])
             ->add('startedAt', DateTimeType::class, [
                 'label' => 'Date de début de la formation',
-                'input' => 'datetime_immutable'
+                'input' => 'datetime_immutable',
+                'widget' => 'single_text'
             ])
             ->add('finishedAt', DateTimeType::class, [
                 'label' => 'Date de fin de la formation',
                 'input' => 'datetime_immutable',
-                'help'  => 'La date de fin doit être postérieur à la date de début'
+                'help'  => 'La date de fin doit être postérieur à la date de début',
+                'widget' => 'single_text'
             ])
             ->add('ville', TextType::class, [
                 'label' => 'Lieu de la formation',
