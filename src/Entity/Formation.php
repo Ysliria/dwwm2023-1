@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\FormationRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 class Formation
@@ -23,6 +24,7 @@ class Formation
     private ?\DateTimeImmutable $startedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Assert\GreaterThan(propertyPath: 'startedAt')]
     private ?\DateTimeImmutable $finishedAt = null;
 
     #[ORM\Column(length: 100, nullable: true)]
