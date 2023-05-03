@@ -6,11 +6,10 @@ use App\Entity\Formation;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use phpDocumentor\Reflection\Types\Self_;
 
 class AppFixtures extends Fixture
 {
-    const FORMATION = [
+    public const FORMATION = [
         'DWWM' => 'Développeur Web et Web Mobile',
         'CDA'  => 'Concepteur Développeur d\'Application',
         'CDUI' => 'Concepteur Designer UI',
@@ -29,10 +28,12 @@ class AppFixtures extends Fixture
                 ->setNom(self::FORMATION[$code])
                 ->setCode($code)
                 ->setStartedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween('-1 week', '+1 month')))
-                ->setFinishedAt(\DateTimeImmutable::createFromMutable($faker->dateTimeBetween($formation->getStartedAt()->format('Y-m-d'), '+1 year')))
-                ->setVille($faker->randomElement(['Tours', 'Orléans']))
-
-            ;
+                ->setFinishedAt(
+                    \DateTimeImmutable::createFromMutable(
+                        $faker->dateTimeBetween($formation->getStartedAt()?->format('Y-m-d'), '+1 year')
+                    )
+                )
+                ->setVille($faker->randomElement(['Tours', 'Orléans']));
 
             $manager->persist($formation);
         }
