@@ -39,6 +39,18 @@ class FormationRepository extends ServiceEntityRepository
         }
     }
 
+    public function findNextTraining(): array
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.startedAt > :startedAt')
+            ->setParameter('startedAt', new \DateTimeImmutable())
+            ->orderBy('f.startedAt', 'ASC')
+            ->setMaxResults(3)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Formation[] Returns an array of Formation objects
 //     */

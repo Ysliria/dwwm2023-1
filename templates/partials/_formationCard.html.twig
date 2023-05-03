@@ -1,5 +1,5 @@
 <div class="card mb-3 border-{{ loop.index is odd ? 'dark' : 'primary' }}">
-    <h3 class="card-header text-white bg-{{ loop.index is odd ? 'dark' : 'primary' }}">{{ formation.nom }}</h3>
+    <h3 class="card-header text-white bg-{{ loop.index is odd ? 'dark' : 'primary' }}" style="min-height: 85px;">{{ formation.nom }}</h3>
     <div class="card-body">
         <h5 class="card-title">Formation prévue sur {{ formation.ville }}</h5>
     </div>

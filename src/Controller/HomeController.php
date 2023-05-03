@@ -13,7 +13,7 @@ class HomeController extends AbstractController
     public function index(FormationRepository $formationRepository): Response
     {
         return $this->render('home/index.html.twig' ,[
-            'formations' => $formationRepository->findBy([], ['startedAt' => 'asc'], '3')
+            'formations' => $formationRepository->findNextTraining()
         ]);
     }
 

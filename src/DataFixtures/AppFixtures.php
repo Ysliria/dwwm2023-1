@@ -33,7 +33,8 @@ class AppFixtures extends Fixture
                         $faker->dateTimeBetween($formation->getStartedAt()?->format('Y-m-d'), '+1 year')
                     )
                 )
-                ->setVille($faker->randomElement(['Tours', 'Orléans']));
+                ->setVille($faker->randomElement(['Tours', 'Orléans']))
+            ;
 
             $manager->persist($formation);
         }

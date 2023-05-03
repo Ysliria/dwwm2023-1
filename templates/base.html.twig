@@ -30,8 +30,10 @@
             </div>
         {% endfor %}
 
-        <main class="container mt-3">
+        <main class="container mt-3 mb-5">
             {% block body %}{% endblock %}
         </main>
+
+        {% include 'partials/_footer.html.twig' %}
     </body>
 </html>
