@@ -41,7 +41,7 @@ class FormationController extends AbstractController
             $formationRepository->save($formation, true);
             $this->addFlash('success', 'La formation " ' . $formation->getNom() . ' " a bien été créée');
 
-            return $this->redirectToRoute('formation_index', [], Response::HTTP_CREATED);
+            return $this->redirectToRoute('formation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('formation/new.html.twig', [
