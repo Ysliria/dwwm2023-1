@@ -29,9 +29,8 @@ security:
             # switch_user: true
 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_REFERENT, ROLE_FORMATEUR]
+        ROLE_ADMIN: ROLE_REFERENT
         ROLE_REFERENT: ROLE_USER
-        ROLE_FORMATEUR: ROLE_USER
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
