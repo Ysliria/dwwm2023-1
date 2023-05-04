@@ -4,7 +4,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ path('home_index') }}">
-                <img src="https://www.cefim.eu/wp-content/uploads/2020/11/decouvrez-notre-formation-chargee-de-communication-esport-logo-blanc-no-baseline-300x96.png.webp" alt="logo cefim" width="150" height="48">
+                <img src="https://www.cefim.eu/wp-content/uploads/2020/11/decouvrez-notre-formation-chargee-de-communication-esport-logo-blanc-no-baseline-300x96.png.webp"
+                     alt="logo cefim" width="150" height="48">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03"
                     aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +38,11 @@
                 </ul>
 
                 <div class="d-flex">
-                    <a href="#" class="btn btn-dark my-2 my-sm-0">Se connecter</a>
+                    {% if app.user %}
+                        <a href="{{ path('app_logout') }}" class="btn btn-secondary my-2 my-sm-0">Se déconnecter</a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}" class="btn btn-dark my-2 my-sm-0">Se connecter</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

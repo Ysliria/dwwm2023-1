@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/formation', name: 'formation_')]
 class FormationController extends AbstractController
@@ -30,6 +31,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'], priority: 2)]
+    #[IsGranted('ROLE_ADMIN')]
     public function new(Request $request, FormationRepository $formationRepository): Response
     {
         $formation    = new Formation();

@@ -7,11 +7,13 @@
 
     <hr>
 
-    <div class="row">
-        <a href="{{ path('formation_new') }}" class="btn btn-dark col-2 offset-10">
-            Ajouter <i class="fa fa-plus"></i>
-        </a>
-    </div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="row">
+            <a href="{{ path('formation_new') }}" class="btn btn-dark col-2 offset-10">
+                Ajouter <i class="fa fa-plus"></i>
+            </a>
+        </div>
+    {% endif %}
 
     <section class="row mt-5">
         {% for formation in formations %}
