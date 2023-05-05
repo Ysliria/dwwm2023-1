@@ -21,7 +21,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link {% if route_name == 'formation_index' %}active{% endif %}"
+                        <a class="nav-link {% if route_name starts with 'formation_' %}active{% endif %}"
                            href="{{ path('formation_index') }}">Formations
                         </a>
                     </li>
