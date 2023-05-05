@@ -7,24 +7,33 @@
 
     <hr>
 
-    <div class="row">
-        <a href="{{ path('formation_update', {'id': formation.id}) }}" class="btn btn-dark col-2 offset-10">
-            Modifier <i class="fa fa-pencil"></i>
-        </a>
-    </div>
+    {% if is_granted('ROLE_USER') %}
+        <div class="row">
+            <a href="{{ path('formation_update', {'id': formation.id}) }}" class="btn btn-dark col-2">
+                Modifier <i class="fa fa-pencil"></i>
+            </a>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                {{ include('formation/_delete_form.html.twig') }}
+            {% endif %}
+        </div>
+    {% endif %}
 
     <section class="row mt-3">
         <h2>La formation</h2>
 
         <dl class="col-8 row">
-            <dt>Commence le : </dt>
-            <dl>{{ formation.startedAt|date('d/m/Y') }}</dl>
+            <dt>Commence le :</dt>
+            <dd>{{ formation.startedAt|date('d/m/Y') }}</dd>
 
-            <dt>Fini le : </dt>
-            <dl>{{ formation.finishedAt|date('d/m/Y') }}</dl>
+            <dt>Fini le :</dt>
+            <dd>{{ formation.finishedAt|date('d/m/Y') }}</dd>
 
-            <dt>Se déroule à : </dt>
-            <dl>{{ formation.ville|upper }}</dl>
+            <dt>Se déroule à :</dt>
+            <dd>{{ formation.ville|upper }}</dd>
+
+            <dt>Référent de la formation :</dt>
+            <dd></dd>
         </dl>
 
         <img src="https://picsum.photos/id/{{ formation.id }}/300/200" class="img-thumbnail col-4" alt="illustration">

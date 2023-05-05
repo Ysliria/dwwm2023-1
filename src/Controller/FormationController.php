@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Formation;
 use App\Form\FormationType;
 use App\Repository\FormationRepository;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -31,7 +32,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'], priority: 2)]
-    #[IsGranted('ROLE_ADMIN')]
+    #[IsGranted('ROLE_REFERENT')]
     public function new(Request $request, FormationRepository $formationRepository): Response
     {
         $formation    = new Formation();
@@ -52,6 +53,7 @@ class FormationController extends AbstractController
     }
 
     #[Route('/{id}/update', name: 'update', methods: ['GET', 'POST'])]
+    #[IsGranted('ROLE_REFERENT')]
     public function update(Request $request, Formation $formation, FormationRepository $formationRepository): Response
     {
         $formationUpdate = $this->createForm(FormationType::class, $formation);
@@ -68,5 +70,17 @@ class FormationController extends AbstractController
         return $this->render('formation/update.html.twig', [
             'formation_update' => $formationUpdate->createView()
         ]);
+    }
+
+    #[Route('/{id}/delete', name: 'delete', methods: ['POST'])]
+    #[IsGranted('ROLE_ADMIN')]
+    public function delete(Request $request, Formation $formation, FormationRepository $formationRepository): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$formation->getId(), $request->request->get('_token'))) {
+            $formationRepository->remove($formation, true);
+            $this->addFlash('success', 'La formation "' . $formation->getNom() . '" a bien été supprimée !');
+        }
+
+        return $this->redirectToRoute('formation_index', [], Response::HTTP_SEE_OTHER);
     }
 }

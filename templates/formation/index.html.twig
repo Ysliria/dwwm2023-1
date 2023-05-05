@@ -7,7 +7,7 @@
 
     <hr>
 
-    {% if is_granted('ROLE_ADMIN') %}
+    {% if is_granted('ROLE_REFERENT') %}
         <div class="row">
             <a href="{{ path('formation_new') }}" class="btn btn-dark col-2 offset-10">
                 Ajouter <i class="fa fa-plus"></i>
