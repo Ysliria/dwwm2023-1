@@ -30,6 +30,7 @@ class AppFixtures extends Fixture
     {
         $faker = Factory::create('fr_FR');
 
+        $users = [];
         // Création de l'administrateur
         $admin = new User();
         $admin
@@ -40,6 +41,7 @@ class AppFixtures extends Fixture
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword($this->passwordHasher->hashPassword($admin, 'Test1234*'));
 
+        $users[] = $admin;
         $manager->persist($admin);
 
         // Création des utilisateurs
@@ -53,6 +55,7 @@ class AppFixtures extends Fixture
                 ->setRoles($faker->randomElement([['ROLE_USER'], ['ROLE_REFERENT']]))
                 ->setPassword($this->passwordHasher->hashPassword($user, 'Test1234*'));
 
+            $users[] = $user;
             $manager->persist($user);
         }
 
@@ -60,6 +63,7 @@ class AppFixtures extends Fixture
         for ($i = 0; $i < 10; $i++) {
             $code      = array_rand(self::FORMATION);
             $formation = new Formation();
+            $users[]   = null;
 
             $formation
                 ->setNom(self::FORMATION[$code])
@@ -70,7 +74,8 @@ class AppFixtures extends Fixture
                         $faker->dateTimeBetween($formation->getStartedAt()?->format('Y-m-d'), '+1 year')
                     )
                 )
-                ->setVille($faker->randomElement(['Tours', 'Orléans']));
+                ->setVille($faker->randomElement(['Tours', 'Orléans']))
+                ->setReferent($faker->randomElement($users));
 
             $manager->persist($formation);
         }
