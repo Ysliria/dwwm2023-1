@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Formation;
+use App\Entity\User;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,7 +44,14 @@ class FormationType extends AbstractType
                 'attr'  => [
                     'placeholder' => 'Tours'
                 ]
-            ]);
+            ])
+            ->add('referent', EntityType::class, [
+                'label' => 'Référent de la formation',
+                'class' => User::class,
+                'choice_label' => 'lastname',
+                'required' => false
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

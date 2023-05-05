@@ -1,7 +1,8 @@
 <div class="card mb-3 border-{{ loop.index is odd ? 'dark' : 'primary' }}">
     <h3 class="card-header text-white bg-{{ loop.index is odd ? 'dark' : 'primary' }}" style="min-height: 85px;">{{ formation.nom }}</h3>
+
     <div class="card-body">
-        <h5 class="card-title">Formation prévue sur {{ formation.ville }}</h5>
+        <h5 class="card-title">Formation prévue sur {{ formation.ville | slice(0,3) }}</h5>
     </div>
 
     <img src="https://picsum.photos/id/{{ formation.id }}/300/200" alt="illustration">
@@ -11,9 +12,11 @@
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consectetur impedit rem. Dolorum facere iure laudantium? Adipisci architecto, aspernatur dolores eligendi minima molestias odit officia quae qui quod tempora vero.
         </p>
     </div>
+
     <div class="card-body">
         <a href="{{ path('formation_show', {'id': formation.id}) }}" class="card-link">Détail</a>
     </div>
+
     <div class="card-footer text-muted">
         Débute le : {{ formation.startedAt|date('d/m/Y') }}
     </div>

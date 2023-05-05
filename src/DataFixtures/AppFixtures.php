@@ -16,7 +16,7 @@ class AppFixtures extends Fixture
         'CDA'  => 'Concepteur Développeur d\'Application',
         'CDUI' => 'Concepteur Designer UI',
         'CDLC' => 'Concepteur Développeur Low Code',
-        'MS2D' => 'Manager de solutions digitales et data'
+        'MS2D' => 'Manager de Solutions Digitales et Data'
     ];
 
     private UserPasswordHasherInterface $passwordHasher;

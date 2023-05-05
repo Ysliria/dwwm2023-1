@@ -48,6 +48,9 @@ class Formation
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $ville = null;
 
+    #[ORM\ManyToOne(inversedBy: 'formations')]
+    private ?User $referent = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -109,6 +112,18 @@ class Formation
     public function setVille(?string $ville): self
     {
         $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getReferent(): ?User
+    {
+        return $this->referent;
+    }
+
+    public function setReferent(?User $referent): self
+    {
+        $this->referent = $referent;
 
         return $this;
     }
