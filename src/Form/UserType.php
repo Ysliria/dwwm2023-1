@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
 
 class UserType extends AbstractType
 {
@@ -19,13 +18,7 @@ class UserType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'Votre prénom',
-                'constraints' => new Length(
-                    min: 3,
-                    max: 100,
-                    minMessage: 'Le nom {{ value }} est trop court !',
-                    maxMessage: 'Le nom {{ value }} est trop long !'
-                )
+                'label' => 'Votre prénom'
             ])
             ->add('lastname', TextType::class, [
                 'label' => 'Votre nom'
@@ -51,8 +44,10 @@ class UserType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
-                                   'data_class' => User::class,
-                               ]);
+        $resolver->setDefaults(
+            [
+               'data_class' => User::class,
+           ]
+        );
     }
 }

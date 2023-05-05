@@ -15,9 +15,27 @@ class Formation
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 4,
+        max: 100,
+        minMessage: 'Le nom de la formation est trop court !',
+        maxMessage: 'Le nom de la formation est trop long !'
+    )]
+    #[Assert\NotBlank(
+        message: 'Le nom de la formation ne peut pas être vide'
+    )]
     private ?string $nom = null;
 
     #[ORM\Column(length: 5)]
+    #[Assert\Length(
+        min: 2,
+        max: 5,
+        minMessage: '{{ value }} est un code de formation trop court !',
+        maxMessage: '{{ value }} est un code de formation trop long'
+    )]
+    #[Assert\NotBlank(
+        message: 'Le code de la formation ne peut pas être vide'
+    )]
     private ?string $code = null;
 
     #[ORM\Column(nullable: true)]

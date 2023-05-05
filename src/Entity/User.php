@@ -20,6 +20,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(
         message: "Nous devez saisir un email !"
     )]
+    #[Assert\Email(
+        message: 'L\'adresse mail {{value}} n\'est pas une adresse valide !',
+        mode: 'strict'
+    )]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -38,12 +42,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         minMessage: 'Le nom {{ value }} est trop court !',
         maxMessage: 'Le nom {{ value }} est trop long !'
     )]
+    #[Assert\NotBlank(
+        message: '{{ value }} n\'est pas un nom valide !'
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le prénom {{ value }} est trop court !',
+        maxMessage: 'Le prénom {{ value }} est trop long !'
+    )]
+    #[Assert\NotBlank(
+        message: '{{ value }} n\'est pas un prénom valide !'
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 15, nullable: true)]
+    #[Assert\Length(
+        min: 10,
+        max: 13,
+        minMessage: 'Votre numéro de téléphone est trop court !',
+        maxMessage: 'Votre numéro de téléphone est trop long !'
+    )]
     private ?string $phone = null;
 
     public function getId(): ?int
