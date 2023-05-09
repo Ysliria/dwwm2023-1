@@ -5,9 +5,11 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -17,7 +19,8 @@ class RegisterController extends AbstractController
     public function index(
         Request $request,
         UserRepository $userRepository,
-        UserPasswordHasherInterface $passwordHasher
+        UserPasswordHasherInterface $passwordHasher,
+        MailerInterface $mailer
     ): Response {
         $user = new User();
         $registerForm = $this->createForm(UserType::class, $user);
@@ -28,6 +31,16 @@ class RegisterController extends AbstractController
             $user->setPassword($passwordHasher->hashPassword($user, $user->getPassword()));
 
             $userRepository->save($user, true);
+
+            $mail = (new TemplatedEmail())
+                ->from('admin@local.test')
+                ->to('mauger@cefim.eu')
+                ->subject('Bienvenue ' . $user->getFirstname() . ' ' . $user->getLastname() . ' !')
+                ->htmlTemplate('mail/register.html.twig')
+                ->context(['user' => $user])
+            ;
+
+            $mailer->send($mail);
 
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
         }
