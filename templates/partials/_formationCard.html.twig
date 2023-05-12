@@ -2,7 +2,7 @@
     <h3 class="card-header text-white bg-{{ loop.index is odd ? 'dark' : 'primary' }}" style="min-height: 85px;">{{ formation.nom }}</h3>
 
     <div class="card-body">
-        <h5 class="card-title">Formation prévue sur {{ formation.ville | slice(0,3) }}</h5>
+        <h5 class="card-title">Formation prévue sur {{ formation.ville}}</h5>
     </div>
 
     <img src="https://picsum.photos/id/{{ formation.id }}/300/200" alt="illustration">

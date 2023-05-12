@@ -2,15 +2,24 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Get;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ApiResource(
+    operations: [
+        new Get()
+    ],
+    normalizationContext: ['groups' => ['read']]
+)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -47,6 +56,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank(
         message: '{{ value }} n\'est pas un nom valide !'
     )]
+    #[Groups(
+        ['read', 'formation']
+    )]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 100)]
@@ -58,6 +70,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     #[Assert\NotBlank(
         message: '{{ value }} n\'est pas un prénom valide !'
+    )]
+    #[Groups(
+        ['read', 'formation']
     )]
     private ?string $firstname = null;
 
